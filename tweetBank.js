@@ -9,7 +9,17 @@ function generateUniqueId(){
 }
 
 function add (name, content) {
-  data.push({name: name, content: content, id: generateUniqueId()})
+  if (name === 'Donald Trump'){
+    data.push({name: name, content: content, id: generateUniqueId(), delete: true})
+  } else {
+    data.push({name: name, content: content, id: generateUniqueId()})
+  }
+}
+
+function remove (id){
+  data = data.filter(function(object){
+    return object.id !== id
+  })
 }
 
 function list () {
@@ -20,7 +30,7 @@ function find (properties) {
   return _.cloneDeep(_.filter(data, properties));
 }
 
-module.exports = {add: add, list: list, find: find}
+module.exports = {add: add, list: list, find: find, remove: remove}
 
 const randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];

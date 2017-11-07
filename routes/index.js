@@ -37,5 +37,12 @@ module.exports = function(io) {
     res.redirect('/')
   })
 
+  router.post('/delete', function(req, res) {
+    var tweet = req.body.tweet;
+    console.log(tweet)
+    tweetBank.remove(tweet);
+    res.redirect('/');
+  })
+
   return router;
 }
