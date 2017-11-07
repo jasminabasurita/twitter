@@ -21,10 +21,25 @@ app.get('/news', function(req, res, next){
   res.send("Here's the news!")
 })
 
+app.get('/views', function(req, res, next){
+  res.render('index', locals, function (err, output) {
+    if (err) throw err;
+    res.send(output);
+    console.log(output);
+  });
+});
+
 var locals = {
-  title: 'I hate nunjucks',
+  title: 'nunjucks will make our lives easier eventually',
   people: [
-    {name: 'I. Haight Nunjucks'},
-    {name: "It's time to leave! This has no importance."}
+    {name: 'For real'},
+    {name: "Even if it sucks at the moment"}
   ]
-}
+};
+
+app.set('view engine', 'html')
+app.engine('html', nunjucks.render);
+nunjucks.configure('views', {noCache: true});
+// nunjucks.render('index.html', locals, function (err, output) {
+//   console.log(output);
+// })
