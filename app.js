@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+const nunjucks = require('nunjucks');
+
+
 app.listen(3000, function(){
   console.log('Twitter up and running!')
 })
@@ -17,3 +20,11 @@ app.get('/', function(req, res, next){
 app.get('/news', function(req, res, next){
   res.send("Here's the news!")
 })
+
+var locals = {
+  title: 'I hate nunjucks',
+  people: [
+    {name: 'I. Haight Nunjucks'},
+    {name: "It's time to leave! This has no importance."}
+  ]
+}
