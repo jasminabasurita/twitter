@@ -2,8 +2,14 @@ const _ = require('lodash');
 
 var data = [];
 
+function generateUniqueId(){
+  var id = Math.floor(Math.random()*10000000000).toString();
+  if (!find({id: id}).length) return id
+  else return generateUniqueId()
+}
+
 function add (name, content) {
-  data.push({name: name, content: content})
+  data.push({name: name, content: content, id: generateUniqueId()})
 }
 
 function list () {
