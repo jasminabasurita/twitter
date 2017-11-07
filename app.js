@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 
 const socketio = require('socket.io');
 
-const server = app.listen(3000, function(){
+const server = app.listen(3000, '0.0.0.0', function(){
   console.log('Twitter up and running!')
 })
 

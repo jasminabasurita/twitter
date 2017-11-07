@@ -84,18 +84,27 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     // Load the socket.io library above, then connect to the server.
-    // Because the socket.io server is being run on the same server as your 
+    // Because the socket.io server is being run on the same server as your
     // Express instance, you can connect() without any arguments.
     var socket = io.connect();
     socket.on('connect', function(){
       console.log('connected to server via WebSockets!');
     });
     // When 'new_tweet' events are fired, do something with the packaged tweet
-    socket.on('newTweet', function (tweet) { 
-      console.log(tweet);
-      alert('Refreshing... check the console...');
-      // some logic to add the new tweet to the DOM…
-    }); 
+    socket.on('newTweet', function (tweet) {
+      const name = tweet.name,
+      text = tweet.tweet,
+      child = document.createElement('li');
+      child.className = 'tweetbox';
+      child.innerHTML =`<img class="tweetbox">
+          <a href="/users/${name}">${name}</a>
+          <br>
+          <a href="/tweets/{{tweet.id}}">${text}</a>`
+      document.getElementById('tweets').appendChild(child)
+      // console.log(tweet);
+      // alert('Refreshing... check the console...');
+      // // some logic to add the new tweet to the DOM…
+    });
   </script>
 
 </html>

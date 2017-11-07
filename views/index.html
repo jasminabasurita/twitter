@@ -13,7 +13,7 @@
 
     </div>
     <div class="col-md-9">
-
+      <ul id='tweets'>
       <!-- display tweets here -->
       {% for tweet in tweets %}
         <li class="tweetbox">
@@ -23,12 +23,12 @@
           <a href="/tweets/{{tweet.id}}">{{tweet.content}}</a>
         </li>
       {% endfor %}
-
+      </ul>
     </div>
   </div>
 
 {% if showForm %}
-<div>  
+<div>
   <form action="/tweets" method="POST">
     <label for="name_field">Name:</label>
     <input name="name" value="{{name}}" type="text" id="name_field" />
