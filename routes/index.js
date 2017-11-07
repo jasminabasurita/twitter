@@ -8,4 +8,8 @@ router.get('/', function (req, res) {
   res.render( 'index', { tweets: tweets } );
 });
 
+router.get('/stylesheets/style.css', function (req, res) {
+  res.sendFile('public/stylesheets/style.css', {root: __dirname+'/../'})
+})
+
 module.exports = router;

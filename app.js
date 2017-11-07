@@ -13,6 +13,8 @@ app.use(function(req, res, next){
   console.log(req.method, req.path);
   next();
 })
+app.use(express.static('public'))
+app.use(express.static('files'))
 app.use(routes);
 
 app.set('view engine', 'html')
