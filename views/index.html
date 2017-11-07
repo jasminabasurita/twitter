@@ -24,7 +24,7 @@
           {% if tweet.delete %}
           <form action="/delete" method="POST">
             <input name="tweet" value="{{tweet.id}}" hidden="hidden"></input>
-            <button>Delete Me I'm Orange</button>
+            <button class="btn">Delete Me I'm Orange</button>
           </form>
           {% endif %}
         </li>
