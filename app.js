@@ -5,17 +5,25 @@ const nunjucks = require('nunjucks');
 
 const routes = require('./routes');
 
+const bodyParser = require('body-parser');
 
-app.listen(3000, function(){
+const socketio = require('socket.io');
+
+const server = app.listen(3000, function(){
   console.log('Twitter up and running!')
 })
+
+const io = socketio.listen(server);
+
 app.use(function(req, res, next){
   console.log(req.method, req.path);
   next();
 })
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static('public'))
 app.use(express.static('files'))
-app.use(routes);
+app.use(routes(io));
 
 app.set('view engine', 'html')
 app.engine('html', nunjucks.render);
